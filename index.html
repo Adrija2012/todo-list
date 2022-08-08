@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Todo list</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+        .card{
+            width: 400px;
+            border: 2px groove black;
+            text-align: center;
+            margin: 10% auto;
+        }
+        ul{
+            list-style-type: none;
+            padding: 20px;
+            padding-top: 5px;
+        }
+        h1{
+            background-color: rgb(75, 162, 255);
+            padding: 20px;
+            margin-top: 0px;
+            color: white;
+            font-family: 'Rubik', sans-serif;
+        }
+        hr {
+            border: 4px groove #4ba2ff ;
+            margin: 15px 0px;
+        }
+        form {
+            text-align: center;
+        }
+        i {
+            padding: 0px 10px;
+            float: right;
+        }
+        .red {
+            color: red;
+        }
+        .green{
+            color: green;
+        }
+        button{
+            background-color: #4ba2ff;
+            margin-left: 10px;
+            border: none;
+            border-radius: 15%;
+            margin-bottom: 15px;
+            font-family: 'Rubik', sans-serif;
+            color: white;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-right: 25px;
+        }
+        input{
+            border: 5px groove #4ba2ff;
+            margin-top: 15px;
+            margin-bottom: 5px
+        }
+
+    </style>
+
+    <script src="https://kit.fontawesome.com/087ba84a5c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="parent">
+        <div class="card">
+            <form >
+                <input id="task" type="text" placeholder="Enter Your Job"  />
+               
+            </form>
+             <button onclick="getData()"> Add Task </button>
+    
+            <h1>To-do List</h1>
+            <ul id="list" >
+             
+            </ul>
+        </div>
+    </div>
+   
+
+    <script>
+       
+
+        var tasks = [];
+
+        function showList()
+        {
+            var result = "";
+
+            for ( var i = 0 ; i < tasks.length ; i=i+1)
+            {
+                result = result + "<li>" + tasks[i] + "<i class='fa-solid fa-trash-can red' onclick='deleteItem(" + i + ")'></i> <i class='fa-solid fa-check green' onclick='markDone(" +i +")'></i>" + "</li> <hr>"
+            }
+            document.getElementById("list").innerHTML = result
+        }
+
+        function markDone(index)
+        {
+           var currlis= document.getElementsByTagName("li")
+           currlis[index].style="text-decoration: line-through"
+        }
+       
+       function deleteItem(index)
+       {
+            tasks.splice(index , 1)
+            showList()
+            
+       }
+        function getData()
+        {
+           
+            var task = document.getElementById("task").value;
+            if(task.length==0)
+            {
+                alert("Please Write something as your job")
+                return;
+            }
+            tasks.push(task)
+             showList()
+          
+        }
+    </script>
+</body>
+</html>
